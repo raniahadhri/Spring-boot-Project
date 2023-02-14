@@ -1,13 +1,19 @@
 package tn.spring.springboot.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import tn.spring.springboot.enums.Support;
 import tn.spring.springboot.enums.TypeCours;
+import java.util.Set;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 @Entity
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
 public class Cours {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,4 +23,7 @@ public class Cours {
     private Support support;
     private float prix;
     private int creneau;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="cours")
+    private Set<Inscription> inscriptions;
 }

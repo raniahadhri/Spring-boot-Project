@@ -1,13 +1,18 @@
 package tn.spring.springboot.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import tn.spring.springboot.enums.Couleur;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
+import java.util.Set;
 @Entity
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
 public class Piste {
 
     @Id
@@ -17,4 +22,6 @@ public class Piste {
     private Couleur couleur;
     private int longeur;
     private int pente;
+    @ManyToMany(mappedBy="pistes",cascade = CascadeType.ALL)
+    private Set<Skieur> skieurs;
 }
