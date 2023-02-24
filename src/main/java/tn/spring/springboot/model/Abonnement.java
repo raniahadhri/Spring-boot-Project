@@ -7,6 +7,7 @@ import lombok.ToString;
 import tn.spring.springboot.enums.TypeAbonnement;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -14,7 +15,8 @@ import java.util.Date;
 @Getter
 @ToString
 @NoArgsConstructor
-public class Abonnement {
+public class Abonnement implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long numAbon;

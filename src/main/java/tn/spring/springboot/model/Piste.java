@@ -7,13 +7,15 @@ import lombok.ToString;
 import tn.spring.springboot.enums.Couleur;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 @Entity
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
-public class Piste {
+public class Piste implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

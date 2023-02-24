@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import tn.spring.springboot.enums.Support;
 import tn.spring.springboot.enums.TypeCours;
+
+import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -14,7 +16,8 @@ import javax.persistence.*;
 @Getter
 @ToString
 @NoArgsConstructor
-public class Cours {
+public class Cours implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long numCours;
