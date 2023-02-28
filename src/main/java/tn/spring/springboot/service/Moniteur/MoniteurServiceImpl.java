@@ -8,7 +8,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
-public class MoniteurService implements IMoniteurService{
+public class MoniteurServiceImpl implements IMoniteurService{
     @Autowired
     private IMoniteurRepository moniteurRepository;
     @Override

@@ -7,7 +7,7 @@ import tn.spring.springboot.service.Cours.ICoursService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cours")
+@RequestMapping("/cours")
 public class CoursController {
     @Autowired
     private ICoursService coursService;
@@ -22,18 +22,22 @@ public class CoursController {
         return coursService.retrieveCours(numCours);
     }
 
-    @PostMapping()
+    @PostMapping
     public Cours addCours(@RequestBody Cours cours) {
         return coursService.addOrUpdateCours(cours);
     }
 
-    @DeleteMapping("/remove-cours/{numCours}")
-    public void removeCours(@PathVariable Cours cours) {
-        coursService.removeCours(cours);
+    @DeleteMapping("/{numCours}")
+    public void removeCours(@PathVariable Long numCours) {
+        Cours cours = coursService.retrieveCours(numCours);
+        if (cours != null) {
+            coursService.removeCours(cours);
+        }
     }
 
-    @PutMapping("/modify-cours")
-    public Cours modifyCours(@RequestBody Cours cours) {
+    @PutMapping("/{numCours}")
+    public Cours updateCours(@PathVariable Long numCours, @RequestBody Cours cours) {
+        cours.setNumCours(numCours);
         return coursService.addOrUpdateCours(cours);
     }
 }

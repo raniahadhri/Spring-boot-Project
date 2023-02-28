@@ -7,7 +7,7 @@ import java.util.List;
 import tn.spring.springboot.service.Moniteur.IMoniteurService;
 
 @RestController
-@RequestMapping("/api/moniteur")
+@RequestMapping("/moniteur")
 public class MoniteurController {
     @Autowired
     private IMoniteurService moniteurService;
@@ -22,18 +22,22 @@ public class MoniteurController {
         return moniteurService.retrieveMoniteur(numMoniteur);
     }
 
-    @PostMapping()
-    public Moniteur addMoniteur(@RequestBody Moniteur Moniteur) {
-        return moniteurService.addOrUpdateMoniteur(Moniteur);
+    @PostMapping
+    public Moniteur addMoniteur(@RequestBody Moniteur moniteur) {
+        return moniteurService.addOrUpdateMoniteur(moniteur);
     }
 
-    @DeleteMapping("/remove-Moniteur/{numMoniteur}")
-    public void removeMoniteur(@PathVariable Moniteur Moniteur) {
-        moniteurService.removeMoniteur(Moniteur);
+    @DeleteMapping("/{numMoniteur}")
+    public void removeMoniteur(@PathVariable Long numMoniteur) {
+        Moniteur moniteur = moniteurService.retrieveMoniteur(numMoniteur);
+        if(moniteur!=null) {
+            moniteurService.removeMoniteur(moniteur);
+        }
     }
 
-    @PutMapping("/modify-Moniteur")
-    public Moniteur modifyMoniteur(@RequestBody Moniteur Moniteur) {
-        return moniteurService.addOrUpdateMoniteur(Moniteur);
+    @PutMapping("/{numMoniteur}")
+    public Moniteur modifyMoniteur(@PathVariable Long numMoniteur, @RequestBody Moniteur moniteur) {
+        moniteur.setNumMoniteur(numMoniteur);
+            return moniteurService.addOrUpdateMoniteur(moniteur);
     }
 }

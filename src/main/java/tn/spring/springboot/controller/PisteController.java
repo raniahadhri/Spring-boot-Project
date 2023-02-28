@@ -8,7 +8,7 @@ import tn.spring.springboot.service.Piste.IPisteService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/piste")
+@RequestMapping("/piste")
 
 public class PisteController {
     @Autowired
@@ -24,19 +24,23 @@ public class PisteController {
         return pisteService.retrievePiste(numPiste);
     }
 
-    @PostMapping()
-    public Piste addPiste(@RequestBody Piste Piste) {
-        return pisteService.addOrUpdatePiste(Piste);
+    @PostMapping
+    public Piste addPiste(@RequestBody Piste piste) {
+        return pisteService.addOrUpdatePiste(piste);
     }
 
-    @DeleteMapping("/remove-Piste/{numPiste}")
-    public void removePiste(@PathVariable Piste Piste) {
-        pisteService.removePiste(Piste);
+    @DeleteMapping("/{numPiste}")
+    public void removePiste(@PathVariable Long numPiste) {
+        Piste piste = pisteService.retrievePiste(numPiste);
+        if(piste != null) {
+            pisteService.removePiste(piste);
+        }
     }
 
-    @PutMapping("/modify-Piste")
-    public Piste modifyPiste(@RequestBody Piste Piste) {
-        return pisteService.addOrUpdatePiste(Piste);
+    @PutMapping("/{numPiste}")
+    public Piste modifyPiste(@PathVariable Long numPiste, @RequestBody Piste piste) {
+        piste.setNumPiste(numPiste);
+        return pisteService.addOrUpdatePiste(piste);
     }
 
 }

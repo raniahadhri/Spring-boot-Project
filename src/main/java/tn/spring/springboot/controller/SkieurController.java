@@ -8,7 +8,7 @@ import tn.spring.springboot.service.Skieur.ISkieurService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/skieur")
+@RequestMapping("/skieur")
 public class SkieurController {
 
     @Autowired
@@ -24,18 +24,22 @@ public class SkieurController {
         return skieurService.retrieveSkieur(numSkieur);
     }
 
-    @PostMapping()
-    public Skieur addSkieur(@RequestBody Skieur Skieur) {
-        return skieurService.addOrUpdateSkieur(Skieur);
+    @PostMapping
+    public Skieur addSkieur(@RequestBody Skieur skieur) {
+        return skieurService.addOrUpdateSkieur(skieur);
     }
 
-    @DeleteMapping("/remove-Skieur/{numSkieur}")
-    public void removeSkieur(@PathVariable Skieur Skieur) {
-        skieurService.removeSkieur(Skieur);
+    @DeleteMapping("/{numSkieur}")
+    public void removeSkieur(@PathVariable long numSkieur) {
+        Skieur skieur= skieurService.retrieveSkieur(numSkieur);
+        if(skieur!= null) {
+            skieurService.removeSkieur(skieur);
+        }
     }
 
-    @PutMapping("/modify-Skieur")
-    public Skieur modifySkieur(@RequestBody Skieur Skieur) {
-        return skieurService.addOrUpdateSkieur(Skieur);
+    @PutMapping("/{numSkieur}")
+    public Skieur modifySkieur(@PathVariable long numSkieur,@RequestBody Skieur skieur) {
+        skieur.setNumSkieur(numSkieur);
+        return skieurService.addOrUpdateSkieur(skieur);
     }
 }
