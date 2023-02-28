@@ -21,7 +21,6 @@ public class InscriptionController {
     @GetMapping("/{numInscription}")
     public Inscription retrieveInscription(@PathVariable Long numInscription) {
         return InscriptionService.retrieveInscription(numInscription);
-
     }
 
     @PostMapping
