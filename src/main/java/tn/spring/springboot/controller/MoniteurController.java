@@ -27,6 +27,11 @@ public class MoniteurController {
         return moniteurService.addOrUpdateMoniteur(moniteur);
     }
 
+    @PostMapping("/add/{numCours}")
+    public Moniteur addInstructorAndAssignToCourse( @RequestBody Moniteur moniteur,@PathVariable Long numCours) {
+        return moniteurService.addInstructorAndAssignToCourse(moniteur,numCours);
+    }
+
     @DeleteMapping("/{numMoniteur}")
     public void removeMoniteur(@PathVariable Long numMoniteur) {
         Moniteur moniteur = moniteurService.retrieveMoniteur(numMoniteur);

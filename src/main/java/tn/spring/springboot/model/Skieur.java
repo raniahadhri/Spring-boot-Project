@@ -15,6 +15,7 @@ import java.util.Set;
 @Getter
 @ToString
 @NoArgsConstructor
+
 public class Skieur implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -26,7 +27,9 @@ public class Skieur implements Serializable {
     private Date dateNaissance;
     private String ville;
 
-
+    public Skieur(Long numSkieur){
+        this.numSkieur=numSkieur;
+    }
     @OneToOne(cascade = CascadeType.ALL)
     private Abonnement abonnement;
     @ManyToMany
