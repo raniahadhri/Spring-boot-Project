@@ -1,5 +1,6 @@
 package tn.spring.springboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,6 +34,11 @@ public class Skieur implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private Abonnement abonnement;
     @ManyToMany
+//    @JsonIgnore
+    @JoinTable(
+            name = "skieur_pistes",
+            joinColumns = @JoinColumn(name = "num_skieur"),
+            inverseJoinColumns = @JoinColumn(name = "num_piste"))
     private Set<Piste> pistes;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="skieur")

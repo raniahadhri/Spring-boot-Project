@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import tn.spring.springboot.model.Abonnement;
 import tn.spring.springboot.service.Abonnement.IAbonnementService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -41,4 +42,8 @@ public class AbonnementController {
         abonnement.setNumAbon(numAbonnement);
         return AbonnementService.addOrUpdateAbonnement(abonnement);
     }
+//    @GetMapping("/entre/{startDate}/{endDate}")
+//    List<Abonnement> retrieveSubscriptionsByDates(@PathVariable LocalDate startDate, @PathVariable LocalDate endDate){
+//        return AbonnementService.retrieveSubscriptionsByDates(startDate,endDate);
+//    }
 }

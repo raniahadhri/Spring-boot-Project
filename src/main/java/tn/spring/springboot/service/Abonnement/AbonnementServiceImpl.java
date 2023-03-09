@@ -6,6 +6,7 @@ import tn.spring.springboot.model.Abonnement;
 import tn.spring.springboot.repository.IAbonnementRepository;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class AbonnementServiceImpl implements IAbonnementService {
@@ -30,5 +31,10 @@ public class AbonnementServiceImpl implements IAbonnementService {
     public Abonnement retrieveAbonnement(Long numAbonnement) {
         return AbonnementRepository.findById(numAbonnement)
                 .orElseThrow(() -> new EntityNotFoundException("Abonnement not found with id " + numAbonnement));
+    }
+
+    @Override
+    public List<Abonnement> retrieveSubscriptionsByDates(LocalDate startDate, LocalDate endDate) {
+        return AbonnementRepository.findAbonnementsByDateDebutAndDateFin(startDate, endDate);
     }
 }

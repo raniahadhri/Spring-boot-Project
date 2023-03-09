@@ -10,4 +10,5 @@ public interface IMoniteurService {
 
     Moniteur retrieveMoniteur (Long numMoniteur);
     Moniteur addInstructorAndAssignToCourse(Moniteur moniteur, Long numCourse);
+
 }

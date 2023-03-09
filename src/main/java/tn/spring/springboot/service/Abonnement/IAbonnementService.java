@@ -2,6 +2,7 @@ package tn.spring.springboot.service.Abonnement;
 
 import tn.spring.springboot.model.Abonnement;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IAbonnementService {
@@ -11,4 +12,5 @@ public interface IAbonnementService {
     void removeAbonnement (Abonnement abonnement);
 
     Abonnement retrieveAbonnement (Long numAbonnement);
+    List<Abonnement> retrieveSubscriptionsByDates(LocalDate startDate, LocalDate endDate);
 }

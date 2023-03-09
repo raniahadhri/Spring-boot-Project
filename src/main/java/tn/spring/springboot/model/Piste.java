@@ -24,6 +24,7 @@ public class Piste implements Serializable {
     private Couleur couleur;
     private int longeur;
     private int pente;
-    @ManyToMany(mappedBy="pistes",cascade = CascadeType.ALL)
+    //,cascade = CascadeType.ALL
+    @ManyToMany(mappedBy="pistes")
     private Set<Skieur> skieurs;
 }
